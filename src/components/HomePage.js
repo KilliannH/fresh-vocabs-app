@@ -1,9 +1,11 @@
 import React from "react";
-import NavbarComponent from "./NavbarComponent";
+import {Container} from "react-bootstrap";
 
 function HomePage() {
     return(
-        <NavbarComponent />
+        <Container>
+            WILCOMEN
+        </Container>
     );
 }
 
