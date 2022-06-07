@@ -15,9 +15,12 @@ function NavbarComponent() {
                         <Nav.Link as={Link} to="/scores">Scores</Nav.Link>
                     </Nav>
                     <Nav className="navbar-nav ms-auto">
+                        {/*}
                         <NavDropdown title="Dropdown" id="navDropdown">
                             <NavDropdown.Item >Logout</NavDropdown.Item>
                         </NavDropdown>
+                        {*/}
+                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
