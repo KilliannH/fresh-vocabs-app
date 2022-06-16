@@ -5,13 +5,12 @@ import DashboardPage from "./components/DashboardPage";
 import NavbarComponent from "./components/NavbarComponent";
 import './App.css';
 import * as React from "react";
-import * as navigation from "react-router-dom"
 
 export default class App extends React.Component<{}> {
 
     state: any;
 
-    constructor({props}) {
+    constructor(props) {
         super(props);
         this.state = {
             token: null,
@@ -19,6 +18,7 @@ export default class App extends React.Component<{}> {
     }
 
     render() {
+        console.log("bbbbbbbbb render called!")
         // random user
         if (!this.state.token) {
             return (
@@ -26,7 +26,10 @@ export default class App extends React.Component<{}> {
                     <BrowserRouter>
                         <NavbarComponent/>
                         <Routes>
-                            <Route path={"/login"} element={<LoginPage setToken={(token) => this.state.token = token} navigation={navigation}/>}/>
+                            <Route path={"/login"} element={<LoginPage setToken={(token) => {
+                                console.log("bbbbb setToken cb", token);
+                                this.state.token = token
+                            }}/>}/>
                             <Route path={"/"} element={<HomePage/>}/>
                             <Route
                                 path="*"
