@@ -1,6 +1,5 @@
 import * as React from "react";
 import {Container, Button, Table} from "react-bootstrap";
-import {withRouter} from "./with-router";
 
 const stylingObject = {
     div: {
@@ -54,4 +53,4 @@ class DashboardPage extends React.Component<{}> {
     }
 }
 
-export default withRouter(DashboardPage);
+export default DashboardPage;

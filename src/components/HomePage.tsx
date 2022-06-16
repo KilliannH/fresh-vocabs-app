@@ -1,6 +1,5 @@
 import * as React from "react";
 import {Container} from "react-bootstrap";
-import {withRouter} from "./with-router";
 
 class HomePage extends React.Component<{}> {
     render() {
@@ -12,4 +11,4 @@ class HomePage extends React.Component<{}> {
     }
 }
 
-export default withRouter(HomePage);
+export default HomePage;

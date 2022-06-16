@@ -2,15 +2,12 @@ import * as React from "react";
 import {Button} from "react-bootstrap";
 import logo from "../logo.svg";
 import { login } from "../services/authService";
-import * as PropTypes from "prop-types";
-import {withRouter} from "./with-router";
+import * as config from "../config";
 
-class LoginPage extends React.Component<{setToken, navigate}> {
+class LoginPage extends React.Component<{}> {
 
+    history: any;
     state: any;
-    static propTypes = {
-        setToken: PropTypes.func.isRequired,
-    };
 
 
     constructor({props}) {
@@ -29,8 +26,9 @@ class LoginPage extends React.Component<{setToken, navigate}> {
             password: this.state.password
         });
         if(data.token) {
-            this.props.setToken(data.token);
-            this.props.navigate('../dashboard', {replace: true});
+            localStorage.setItem(config.localStorage_token_str, data.token);
+            // @ts-ignore
+            this.props.history.push('/dashboard');
         } else {
             console.error("Auth - an error occured");
         }
@@ -39,9 +37,6 @@ class LoginPage extends React.Component<{setToken, navigate}> {
     render() {
         return (
             <div className="form-signin">
-                <Button className="w-100 btn btn-lg btn-primary" type="button" onClick={() => this.setState({email: this.state.email + 1})}>LLLL</Button>
-                <Button className="w-100 btn btn-lg btn-primary" type="button" onClick={() => console.log(this.state.email)}>RRR</Button>
-
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <img className="mb-4" src={logo} alt="" width="200" height="200"/>
                     <h1 className="h3 mb-3 fw-normal">Please login</h1>
@@ -71,4 +66,4 @@ class LoginPage extends React.Component<{setToken, navigate}> {
     }
 }
 
-export default withRouter(LoginPage);
+export default LoginPage;
