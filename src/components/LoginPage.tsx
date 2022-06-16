@@ -4,7 +4,8 @@ import logo from "../logo.svg";
 import { login } from "../services/authService";
 import * as config from "../config";
 
-class LoginPage extends React.Component<{}> {
+// use the generic of the React.Component class as React.Component<PropsObject, StateObject>
+export default class LoginPage extends React.Component<{}> {
 
     history: any;
     state: any;
@@ -65,5 +66,3 @@ class LoginPage extends React.Component<{}> {
         );
     }
 }
-
-export default LoginPage;

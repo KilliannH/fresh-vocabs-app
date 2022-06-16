@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Container} from "react-bootstrap";
 
-class HomePage extends React.Component<{}> {
+export default class HomePage extends React.Component<{}> {
     render() {
         return (
             <Container>
@@ -10,5 +10,3 @@ class HomePage extends React.Component<{}> {
         );
     }
 }
-
-export default HomePage;

@@ -9,8 +9,6 @@ import withAuth from "./components/with-auth";
 
 export default class App extends React.Component<{}> {
 
-    state: any;
-
     constructor(props) {
         super(props);
         this.state = {

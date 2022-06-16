@@ -4,7 +4,9 @@ import { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 export default function withAuth(ComponentToProtect) {
-    return class extends Component {
+    
+    // use the generic of the React.Component class as React.Component<PropsObject, StateObject>
+    return class extends React.Component<{}, {redirect}> {
         constructor(props) {
             super(props);
             this.state = {
@@ -26,7 +28,6 @@ export default function withAuth(ComponentToProtect) {
 
 
         render() {
-            // @ts-ignore
             const { redirect } = this.state;
             if (redirect) {
                 return <Redirect to="/" />;

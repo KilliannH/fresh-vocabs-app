@@ -7,7 +7,7 @@ const stylingObject = {
     }
 }
 
-class DashboardPage extends React.Component<{}> {
+export default class DashboardPage extends React.Component<{}> {
 
     render() {
         return (
@@ -52,5 +52,3 @@ class DashboardPage extends React.Component<{}> {
         );
     }
 }
-
-export default DashboardPage;
