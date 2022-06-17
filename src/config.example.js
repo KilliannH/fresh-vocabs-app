@@ -2,6 +2,7 @@ const config = {
     backendProtocol: 'superProtocol',
     backendPort: 31234,
     backendHost: 'host',
-    localStorage_token_str: "token",
+    localStorage_tokenStr: "token",
+    localStorage_userInfos: "userInfos"
 };
 module.exports = config;

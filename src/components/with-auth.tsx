@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as config from '../config';
 
 import { Redirect } from 'react-router-dom';
+
+import { checkExpiry } from "../constants";
 import { decode } from "../services/authService";
 
 export default function withAuth(ComponentToProtect) {
@@ -17,15 +19,14 @@ export default function withAuth(ComponentToProtect) {
         }
 
         async handleToken() {
-            const token = localStorage.getItem(config.localStorage_token_str);
-            // todo - decode token to get expiration
+            const token = localStorage.getItem(config.localStorage_tokenStr);
             if(token) {
                 const data = await decode(token);
                 if(data.decoded) {
-                    const currentDateTime = new Date();
-                    const now = currentDateTime.getTime() / 1000;
-                    if(now < data.decoded.exp) {
+                    if(checkExpiry(data.decoded.exp)) {
                         return data.decoded;
+                    } else {
+                        console.error("AUTH - token expired")
                     }
                 }
             }
