@@ -2,8 +2,6 @@ import * as React from "react";
 import {Button} from "react-bootstrap";
 import logo from "../logo.svg";
 import { login } from "../services/authService";
-import * as config from "../config";
-import NavbarComponent from "./NavbarComponent";
 
 // use the generic of the React.Component class as React.Component<PropsObject, StateObject>
 export default class LoginPage extends React.Component<{appLogin}, {email, password}> {
@@ -17,7 +15,8 @@ export default class LoginPage extends React.Component<{appLogin}, {email, passw
         }
     }
 
-    async handleSubmit(e) {
+    // class fields to do the binding outside the constructor
+    handleSubmit = async (e) => {
         e.preventDefault();
         const { appLogin } = this.props;
         // prevent page reload
@@ -35,7 +34,7 @@ export default class LoginPage extends React.Component<{appLogin}, {email, passw
     render() {
         return (
             <div className="form-signin">
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                <form onSubmit={this.handleSubmit}>
                     <img className="mb-4" src={logo} alt="" width="200" height="200"/>
                     <h1 className="h3 mb-3 fw-normal">Please login</h1>
                     <div className="form-floating">

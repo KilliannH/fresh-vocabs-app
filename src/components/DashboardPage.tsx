@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Container, Button, Table} from "react-bootstrap";
+import NewVocabModal from "./NewVocabModal";
 
 const stylingObject = {
     div: {
@@ -21,7 +22,7 @@ export default class DashboardPage extends React.Component<{currentUser}> {
                 <div className={"bg-secondary p-5"} style={stylingObject.div}>
                     <h1>Hello, {currentUser.username}</h1>
                     <p className="lead">Get started by adding a new vocab</p>
-                    <Button>Add</Button>
+                    <NewVocabModal />
                 </div>
                 {/* List */}
                 <Container>

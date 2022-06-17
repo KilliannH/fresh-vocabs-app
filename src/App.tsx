@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import HomePage from "./components/HomePage";
 import LoginPage from "./components/LoginPage";
 import DashboardPage from "./components/DashboardPage";
@@ -30,14 +30,14 @@ export default class App extends React.Component<{}, {currentUser}> {
         }
     }
 
-    logout() {
+    logout = () => {
         localStorage.removeItem(config.localStorage_authJSON);
         this.setState({currentUser: null});
         //@ts-ignore
         history.push('/');
     }
 
-    appLogin(authJSON) {
+    appLogin = (authJSON) => {
         localStorage.setItem(config.localStorage_authJSON, JSON.stringify(authJSON));
         this.setState({currentUser: {username: authJSON.decoded.username, email: authJSON.decoded.email}});
         history.push('/dashboard');
@@ -47,9 +47,9 @@ export default class App extends React.Component<{}, {currentUser}> {
         const { currentUser } = this.state;
         return (
             <>
-                <NavbarComponent currentUser={currentUser} logout={this.logout.bind(this)}/>
+                <NavbarComponent currentUser={currentUser} logout={this.logout}/>
                     <Switch>
-                        <Route path={"/login"} component={(props) => <LoginPage {...props} appLogin={this.appLogin.bind(this)}/>}/>
+                        <Route path={"/login"} component={(props) => <LoginPage {...props} appLogin={this.appLogin}/>}/>
                         <Route path={"/dashboard"} component={withAuth(DashboardPage)}/>
                         <Route path={"*"} component={HomePage}/>
                     </Switch>

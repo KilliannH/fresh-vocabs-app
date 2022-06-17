@@ -20,16 +20,16 @@ export default function withAuth(ComponentToProtect) {
         }
 
         async handleToken() {
-            let authJSONstr = localStorage.getItem(config.localStorage_authJSON);
+            let authJSONStr = localStorage.getItem(config.localStorage_authJSON);
             let authJSON;
-            if(authJSONstr) {
+            if(authJSONStr) {
                 try {
-                    authJSON = JSON.parse(authJSONstr);
+                    authJSON = JSON.parse(authJSONStr);
                 } catch (e) {
                     console.error("Parse - error while parsing authJSON", e);
                 }
             }
-            // @ts-ignore
+
             if(authJSON && authJSON.token) {
                 // we decode from BE
                 const data = await decode(authJSON.token);

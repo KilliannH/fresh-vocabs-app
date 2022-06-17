@@ -2,22 +2,11 @@ import * as React from "react";
 import { Navbar, Container, Nav, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import constants from "../constants";
-import * as config from "../config";
 
 export default class NavbarComponent extends React.Component<{currentUser, logout}, {}> {
 
-    history: any;
-
     constructor(props) {
         super(props);
-    }
-
-    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ currentUser }>, snapshot?: any) {
-        console.log("Navbar did update");
-    }
-
-    componentDidMount() {
-        console.log("Navbar did mount");
     }
 
     render() {
