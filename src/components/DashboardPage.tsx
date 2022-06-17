@@ -14,11 +14,12 @@ export default class DashboardPage extends React.Component<{currentUser}> {
     }
 
     render() {
+        const {currentUser} = this.props;
         return (
             <>
                 {/* Jumbotron */}
                 <div className={"bg-secondary p-5"} style={stylingObject.div}>
-                    <h1>Hello, currentUser.username</h1>
+                    <h1>Hello, {currentUser.username}</h1>
                     <p className="lead">Get started by adding a new vocab</p>
                     <Button>Add</Button>
                 </div>

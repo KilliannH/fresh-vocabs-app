@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as config from '../config';
-import { Component } from 'react';
+
 import { Redirect } from 'react-router-dom';
 import { decode } from "../services/authService";
 
@@ -12,7 +12,7 @@ export default function withAuth(ComponentToProtect) {
             super(props);
             this.state = {
                 redirect: false,
-                currentUser: null,
+                currentUser: ''
             };
         }
 
@@ -43,11 +43,11 @@ export default function withAuth(ComponentToProtect) {
 
 
         render() {
-            const { redirect } = this.state;
+            const { redirect, currentUser } = this.state;
             if (redirect) {
                 return <Redirect to="/" />;
             }
-            return <ComponentToProtect {...this.props} />;
+            return <ComponentToProtect {...this.props} currentUser={currentUser} />;
         }
     }
 }
