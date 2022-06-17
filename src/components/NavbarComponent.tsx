@@ -22,7 +22,6 @@ export default class NavbarComponent extends React.Component<{currentUser, logou
 
     render() {
         const { currentUser, logout } = this.props;
-        console.log(currentUser);
         const getDropdown = () => {
             if(!currentUser) {
                 return(<Nav.Link as={Link} to="/login">Login</Nav.Link>);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as config from '../config';
+import * as _ from 'lodash';
 
 import { Redirect } from 'react-router-dom';
 
@@ -29,11 +30,19 @@ export default function withAuth(ComponentToProtect) {
                 }
             }
             // @ts-ignore
-            const token = authJSON.token;
-            if(token) {
-                const data = await decode(token);
+            if(authJSON && authJSON.token) {
+                // we decode from BE
+                const data = await decode(authJSON.token);
                 if(data.decoded) {
                     if(checkExpiry(data.decoded.exp)) {
+                        const isEqual = _.isEqual(authJSON.decoded, data.decoded);
+
+                        // never happen in normal case, but if it does, just replace the decoded values
+                        // todo - need to invalidate token & remove any from LS if user update his credentials
+                        if(!isEqual) {
+                            authJSON.decoded = data.decoded;
+                            localStorage.setItem(config.localStorage_authJSON, JSON.stringify(authJSON));
+                        }
                         return data.decoded;
                     } else {
                         console.error("AUTH - token expired")
