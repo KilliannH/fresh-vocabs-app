@@ -3,33 +3,30 @@ import {Button} from "react-bootstrap";
 import logo from "../logo.svg";
 import { login } from "../services/authService";
 import * as config from "../config";
+import NavbarComponent from "./NavbarComponent";
 
 // use the generic of the React.Component class as React.Component<PropsObject, StateObject>
-export default class LoginPage extends React.Component<{}> {
-
-    history: any;
-    state: any;
+export default class LoginPage extends React.Component<{appLogin}, {email, password}> {
 
 
     constructor({props}) {
         super(props);
         this.state = {
-            email: 0,
-            password: null
+            email: '',
+            password: ''
         }
     }
 
     async handleSubmit(e) {
         e.preventDefault();
+        const { appLogin } = this.props;
         // prevent page reload
-        const data = await login({
+        const res = await login({
             email: this.state.email,
             password: this.state.password
         });
-        if(data.token) {
-            localStorage.setItem(config.localStorage_token_str, data.token);
-            // @ts-ignore
-            this.props.history.push('/dashboard');
+        if(res && res.success) {
+            appLogin(res.data);
         } else {
             console.error("Auth - an error occured");
         }

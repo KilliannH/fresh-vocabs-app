@@ -3,37 +3,32 @@ import { Navbar, Container, Nav, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import constants from "../constants";
 import * as config from "../config";
-import UserInfos from "../../types/UserInfos";
 
-export default class NavbarComponent extends React.Component<{}, {currentUser}> {
+export default class NavbarComponent extends React.Component<{currentUser, logout}, {}> {
+
+    history: any;
 
     constructor(props) {
         super(props);
-        this.state = {
-            currentUser: null
-        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ currentUser }>, snapshot?: any) {
+        console.log("Navbar did update");
     }
 
     componentDidMount() {
-        let userInfos: UserInfos | null;
-        try {
-          userInfos = JSON.parse(localStorage.getItem(config.localStorage_userInfos));
-        }catch (e) {
-            console.error("Parse - error while parsing userInfos", e);
-        }
-        if(userInfos) {
-            this.setState({currentUser: {username: userInfos.username, email: userInfos.email}})
-        }
+        console.log("Navbar did mount");
     }
 
     render() {
-        const { currentUser } = this.state;
+        const { currentUser, logout } = this.props;
+        console.log(currentUser);
         const getDropdown = () => {
             if(!currentUser) {
                 return(<Nav.Link as={Link} to="/login">Login</Nav.Link>);
             }
-            return (<NavDropdown title="Dropdown" id="navDropdown">
-                <NavDropdown.Item >Logout</NavDropdown.Item>
+            return (<NavDropdown title={currentUser.email} id="navDropdown">
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             </NavDropdown>);
         }
 

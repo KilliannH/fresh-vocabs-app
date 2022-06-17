@@ -10,7 +10,6 @@ export async function login(credentials) {
         },
         body: JSON.stringify(credentials)
     }).then((data) => {
-        console.log(data);
         return data.json();
     });
 }
