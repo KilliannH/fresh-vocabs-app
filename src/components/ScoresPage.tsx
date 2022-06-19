@@ -1,11 +1,11 @@
 import * as React from "react";
 import {Container} from "react-bootstrap";
 
-export default class HomePage extends React.Component<{}> {
+export default class ScoresPage extends React.Component<{}> {
     render() {
         return (
             <Container>
-                HomePage works!
+                ScoresPage works!
             </Container>
         );
     }
