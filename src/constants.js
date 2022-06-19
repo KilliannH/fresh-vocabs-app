@@ -11,4 +11,11 @@ export function checkExpiry(exp) {
     return now < exp;
 }
 
+export const partOfSpeechItems = [
+    "Noun", "Pronoun",
+    "Verb", "Adjective",
+    "Adverb", "Preposition",
+    "Conjunction", "Interjection"
+];
+
 export default constants;

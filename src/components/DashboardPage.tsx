@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Container, Button, Table} from "react-bootstrap";
 import NewVocabModal from "./NewVocabModal";
+import { partOfSpeechItems } from "../constants";
 
 const stylingObject = {
     div: {
@@ -8,10 +9,28 @@ const stylingObject = {
     }
 }
 
+const sampleData = [
+    {id: 1, word: "yes", translation: "oui", partOfSpeech: 1},
+    {id: 2, word: "Hello", translation: "Salut", partOfSpeech: 8},
+]
+
 export default class DashboardPage extends React.Component<{currentUser}> {
 
     constructor(props) {
         super(props);
+    }
+
+    displayTable = (items) => {
+        return items.map((item) => {
+            return(
+                <tr>
+                    <td>{item.id}</td>
+                    <td>{item.word}</td>
+                    <td>{item.translation}</td>
+                    <td>{partOfSpeechItems[item.partOfSpeech - 1]}</td>
+                </tr>
+            );
+        });
     }
 
     render() {
@@ -38,18 +57,7 @@ export default class DashboardPage extends React.Component<{currentUser}> {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Yes</td>
-                                <td>Oui</td>
-                                <td>noun</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Hello</td>
-                                <td>Salut</td>
-                                <td>Interjection</td>
-                            </tr>
+                            {this.displayTable(sampleData)}
                             </tbody>
                         </Table>
                     </div>
